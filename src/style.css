@@ -1,0 +1,164 @@
+/* ===================== GLOBAL ===================== */
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
+    max-width: 800px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ===================== CHAT AREA ===================== */
+
+.chat-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: none;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background: #f8f9fa;
+}
+
+
+/* ===================== ELEMENTS ===================== */
+
+.chat-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #313131;
+}
+
+.send-button {
+    background-color: rgb(25, 135, 84);
+    border-radius: 10px;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.user-message,
+.chatbot-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.user-message {
+    justify-content: end;
+}
+
+.message-text {
+    max-width: 300px;
+    background-color: #e6eaee;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.chat-pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+/* ===================== RESPONSIVE ===================== */
+
+/* --- Large screens (Desktops 1440px+) --- */
+@media (min-width: 1440px) {
+    .app-container {
+        max-width: 1000px;
+    }
+
+    .message-text {
+        max-width: 450px;
+        font-size: 17px;
+    }
+
+    .chat-pfp {
+        width: 60px;
+        height: 60px;
+    }
+
+    .chat-input {
+        font-size: 17px;
+        padding: 14px;
+    }
+
+    .send-button {
+        font-size: 17px;
+        padding: 14px 25px;
+    }
+}
+
+/* --- Medium screens (Notebooks 1024px–1439px) --- */
+@media (max-width: 1439px) {
+    .app-container {
+        max-width: 900px;
+    }
+
+    .message-text {
+        max-width: 380px;
+    }
+}
+
+/* --- Tablets (600px–1023px) --- */
+@media (max-width: 1023px) {
+    .app-container {
+        max-width: 95%;
+    }
+
+    .message-text {
+        max-width: 300px;
+    }
+
+    .chat-input-area {
+        padding: 8px;
+    }
+}
+
+/* --- Mobile (600px) --- */
+@media (max-width: 600px) {
+    .app-container {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .chat-input-area {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .send-button {
+        width: 100%;
+    }
+
+    .message-text {
+        max-width: 250px;
+        font-size: 14px;
+    }
+
+    .chat-pfp {
+        width: 40px;
+        height: 40px;
+    }
+}
