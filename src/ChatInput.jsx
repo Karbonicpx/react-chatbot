@@ -1,17 +1,19 @@
 import React from "react";
+
 function ChatInput({ setChatMessages }) {
 
+    // States for both user input and bot input (anim)
     const [inputText, setInputText] = React.useState("");
-     // Event is a object that contains information about the event that occurred
-    function saveInputText(event){
-        
-        // This is basically saying to save the value from the element (target) that has this function
+    const [isBotTyping, setIsBotTyping] = React.useState(false);
+
+
+    // Event.target.value means he is getting the value in the object associated with this function (event.target)
+    function saveInputText(event) {
         setInputText(event.target.value);
-    };
+    }
 
-    // Function to manage the responses the chatbot will give
+    // Converts the user message to a response for the chatbot
     function answerData(userMsg) {
-
         if (userMsg === "hello chatbot") {
             return "Hello how can i help you?"
         }
@@ -21,30 +23,32 @@ function ChatInput({ setChatMessages }) {
         else {
             return "I am sorry, I can't answer the question."
         }
-
     }
 
-    // This function will generate new messages by changing the state of chatMessages in the parent component UserChat
     function sendMessage() {
+        if (inputText.trim() === "") return;
 
-        
-        // Calling change state function from UserChat to add a new message
-        setChatMessages(prevMessages => [
-            ...prevMessages, // Copy of the chatMessages variable from UserChat
-            {
-                message: inputText, // Sends the message of the user
-                sender: "user"
-            },
-            {   
-                // Then sends the response of the chatbot
-                message: answerData(inputText),
-                sender: "chatbot"
-            }
+        const userMsg = inputText;
+
+        // Add user message instantly
+        setChatMessages(prev => [
+            ...prev,
+            { message: userMsg, sender: "user" }
         ]);
-        
-    };
 
-   
+        setInputText("");
+        setIsBotTyping(true); // Show animation
+
+        // Delay before bot answer
+        setTimeout(() => {
+            setChatMessages(prev => [
+                ...prev,
+                { message: answerData(userMsg), sender: "chatbot" }
+            ]);
+
+            setIsBotTyping(false);
+        }, 1200);
+    }
 
     return (
         <>
@@ -56,6 +60,16 @@ function ChatInput({ setChatMessages }) {
                 className="chat-input"
             />
             <button onClick={sendMessage} className="send-button">Send</button>
+
+            {/* Bot typing animation */}
+            {isBotTyping && (
+                <div className="chatbot-message">
+                    <img src="./assets/robot.png" className="chat-pfp" />
+                    <div className="typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
