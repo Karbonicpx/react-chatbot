@@ -44,8 +44,3 @@ If not, it sends a fallback default message.
   <li><strong>HTML & CSS</strong></li>
   <li><strong>JavaScript (ES6+)</strong></li>
 </ul>
-
----
-
-<h2><em>Project Structure</em></h2>
-
